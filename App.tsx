@@ -19,3 +19,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+// git config --global user.email "you@example.com"
+//   git config --global user.name "Your Name"
