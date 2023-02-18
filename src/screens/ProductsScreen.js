@@ -6,11 +6,15 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import products from '../data/products';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
+import {productsSlice} from '../store/productsSlice';
 
 const ProductsScreen = () => {
   const navigation = useNavigation();
+
+  const products = useSelector(state => state.products.products);
+  const dispatch = useDispatch();
 
   return (
     <FlatList
@@ -19,7 +23,11 @@ const ProductsScreen = () => {
       renderItem={({item}) => (
         <View style={styles.itemContainer}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Product Details')}>
+            onPress={() => {
+              //get Selected Product
+              dispatch(productsSlice.actions.setelectedProduct(item.id));
+              navigation.navigate('Product Details');
+            }}>
             <Image source={{uri: item.image}} style={styles.image} />
           </TouchableOpacity>
         </View>
