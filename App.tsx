@@ -1,17 +1,10 @@
-import {View} from 'react-native';
 import React from 'react';
-import ProductsScreen from './src/screens/ProductsScreen';
-import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
-import ShoppingCart from './src/screens/ShoppingCart';
+import Navigation from './src/Navigation';
 
 const App = () => {
-  return (
-    <View>
-      {/* <ProductsScreen /> */}
-      {/* <ProductDetailsScreen /> */}
-      <ShoppingCart />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
+
+// 2h:3min

@@ -23,7 +23,7 @@ const ProductDetailsScreen = () => {
 
   return (
     <View>
-      <ScrollView>
+      <ScrollView style={styles.scrollContainer}>
         {/* Image Carousel */}
         <FlatList
           horizontal
@@ -62,6 +62,9 @@ const ProductDetailsScreen = () => {
 export default ProductDetailsScreen;
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    marginBottom: 80,
+  },
   image: {
     width: width,
     aspectRatio: 1,

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    bottom: -40,
+    bottom: 30,
     alignSelf: 'center',
     backgroundColor: '#687387',
     alignItems: 'center',
