@@ -2,11 +2,29 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {PlusCircleIcon, MinusCircleIcon} from 'react-native-heroicons/outline';
 import Currency from 'react-currency-formatter';
+import {useDispatch} from 'react-redux';
+import {cartSlice} from '../store/cartSlice';
 
 const CartListItem = ({cartItem}) => {
-  const increaseQuantity = () => {};
+  const dispatch = useDispatch();
 
-  const decreaseQuantity = () => {};
+  const increaseQuantity = () => {
+    dispatch(
+      cartSlice.actions.setQuantity({
+        productId: cartItem.product.id,
+        amount: 1,
+      }),
+    );
+  };
+
+  const decreaseQuantity = () => {
+    dispatch(
+      cartSlice.actions.setQuantity({
+        productId: cartItem.product.id,
+        amount: -1,
+      }),
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -17,20 +35,23 @@ const CartListItem = ({cartItem}) => {
 
         <View style={styles.footer}>
           <MinusCircleIcon
-            onPress={increaseQuantity}
+            onPress={decreaseQuantity}
             name="minus-circle"
             size={24}
             color="gray"
           />
           <Text style={styles.quantity}>{cartItem.quantity}</Text>
           <PlusCircleIcon
-            onPress={decreaseQuantity}
+            onPress={increaseQuantity}
             name="plus-circle"
             size={24}
             color="gray"
           />
           <Text style={styles.itemTotal}>
-            <Currency quantity={cartItem.product.price} currency="USD" />
+            <Currency
+              quantity={cartItem.product.price * cartItem.quantity}
+              currency="USD"
+            />
           </Text>
         </View>
       </View>

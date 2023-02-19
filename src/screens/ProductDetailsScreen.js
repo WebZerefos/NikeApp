@@ -10,15 +10,22 @@ import {
 } from 'react-native';
 import React from 'react';
 import Currency from 'react-currency-formatter';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {cartSlice} from '../store/cartSlice';
+import {useNavigation} from '@react-navigation/native';
+
+export const first = state => state.second;
 
 const width = Dimensions.get('window').width;
 
 const ProductDetailsScreen = () => {
   const product = useSelector(state => state.products.selectedProduct);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const addToCart = () => {
-    console.warn('Adding product to cart');
+    dispatch(cartSlice.actions.addItem({product}));
+    navigation.goBack();
   };
 
   return (
